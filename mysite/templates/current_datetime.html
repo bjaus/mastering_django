@@ -1,13 +1,9 @@
-<!DOCTYPE HTML>
-<html lang="en">
-<head>
-    <title>The Current Time</title>
-</head>
-<body>
-    <h1>My helpful timestamp site</h1>
-    <p>It is now {{ current_date }}.</p>
-    
-    <hr>
-    <p>Thanks for visiting my site.</p>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Current Time{% endblock %}
+
+{% block content %}
+<p>It is now {{ current_datetime }}</p>
+{% endblock %}
+
+{% block footer %}{% endblock %}
