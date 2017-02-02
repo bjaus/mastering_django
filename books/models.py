@@ -37,4 +37,4 @@ class Book(models.Model):
         return self.title
         
     class Meta:
-        ordering = ['title']
+        ordering = ['-publication_date']
