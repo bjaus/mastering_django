@@ -57,7 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         # 'BACKEND': 'django.template.backends.jinja2.Jinja2', # Used for Jinja template engine
-        'DIRS': [os.path.join(BASE_DIR, 'mysite', 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'books', 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
