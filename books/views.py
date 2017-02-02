@@ -12,5 +12,3 @@ def search_form(request):
     # for k, v in values:
         # html.append('<tr><td>{}</td><td>{}</td></tr>'.format(k, v))
     # return HttpResponse('<table>{}</table>'.format(html))
-    
-# git issue test
