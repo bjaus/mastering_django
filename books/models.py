@@ -22,6 +22,9 @@ class Author(models.Model):
     
     def __str__(self):
         return u'{} {}'.format(self.first_name, self.last_name)
+        
+    class Meta:
+        ordering = ['last_name']
     
     
 class Book(models.Model):
@@ -32,3 +35,6 @@ class Book(models.Model):
     
     def __str__(self):
         return self.title
+        
+    class Meta:
+        ordering = ['title']
