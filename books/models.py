@@ -16,8 +16,8 @@ class Publisher(models.Model):
     
     
 class Author(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=40)
+    first_name = models.CharField(max_length=30, verbose_name='First Name')
+    last_name = models.CharField(max_length=40, verbose_name='Last Name')
     email = models.EmailField(blank=True, null=True, verbose_name='e-mail')
     
     def __str__(self):
@@ -31,7 +31,7 @@ class Book(models.Model):
     title = models.CharField(max_length=100)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
-    publication_date = models.DateField()
+    publication_date = models.DateField(blank=True, null=True, verbose_name='Pub Date')
     
     def __str__(self):
         return self.title
