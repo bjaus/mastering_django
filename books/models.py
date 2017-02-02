@@ -2,8 +2,8 @@ from django.db import models
 
 class Publisher(models.Model):
     name = models.CharField(max_length=30)
-    address = models.CharField(max_length=50)
-    city = models.CharField(max_length=60)
+    address = models.CharField(max_length=50, blank=True, null=True)
+    city = models.CharField(max_length=60, blank=True, null=True)
     state_province = models.CharField(max_length=30, verbose_name='State/Province')
     country = models.CharField(max_length=50)
     website = models.URLField()

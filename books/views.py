@@ -10,7 +10,7 @@ def search_form(request):
 def search(request):
     if 'q' in request.GET and request.GET['q']:
         q = request.GET['q']
-        books = Book.objects.filter(title__icontains=q)
+        books = Book.objects.filter(title__icontains=q).order_by('title')
         return render(request, 'search_result.html', {'books': books, 'query': q})
     else:
         return HttpResponse('Please submit a search term.')
