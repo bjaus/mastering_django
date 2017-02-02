@@ -18,7 +18,7 @@ class Publisher(models.Model):
 class Author(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=40)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=True, null=True, verbose_name='e-mail')
     
     def __str__(self):
         return u'{} {}'.format(self.first_name, self.last_name)
