@@ -13,4 +13,4 @@ def search(request):
         books = Book.objects.filter(title__icontains=q).order_by('-publication_date')
         return render(request, 'search_result.html', {'books': books, 'query': q})
     else:
-        return render(request, 'search_form.html', 'error': True)
+        return render(request, 'search_form.html', {'error': True})
