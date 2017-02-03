@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Publisher, Author, Book
+from .models import Publisher, Author, Book, Tag
 
 class PublisherAdmin(admin.ModelAdmin):
     fields = ('name', 'website', 'address', 'city', 'state_province', 'country')
@@ -17,17 +17,16 @@ class AuthorAdmin(admin.ModelAdmin):
 
 class BookAdmin(admin.ModelAdmin):
     date_hierarchy = 'publication_date'
-    fields = ('title', 'authors', 'publisher', 'publication_date')
-    filter_vertical = ('authors',)
+    fields = ('title', 'tags', 'authors', 'publisher', 'publication_date')
+    filter_vertical = ('tags', 'authors')
     list_display = ('title', 'publisher', 'publication_date')
     list_filter = ('publication_date',)
     ordering = ('-publication_date', 'title')
-    # raw_id_fields = ('publisher',) # Used so that not every publisher is loaded into a dropdown box; accpets Publisher ID
+    raw_id_fields = ('publisher',) # Used so that not every publisher is loaded into a dropdown box; accpets Publisher ID
     search_fields = ('title', 'publisher', 'publication_date')
 
 
 admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(Author, AuthorAdmin)
+admin.site.register(Tag)
 admin.site.register(Book, BookAdmin)
-
-# Change to test how branching works

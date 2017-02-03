@@ -25,10 +25,18 @@ class Author(models.Model):
         
     class Meta:
         ordering = ['last_name']
+        
+        
+class Tag(models.Model):
+    tag = models.CharField(max_length=30)
+    
+    def __str__(self):
+        return self.tag
     
     
 class Book(models.Model):
     title = models.CharField(max_length=100)
+    tags = models.ManyToManyField(Tag)
     authors = models.ManyToManyField(Author)
     publisher = models.ForeignKey(Publisher)
     publication_date = models.DateField(blank=True, null=True, verbose_name='Pub Date')
