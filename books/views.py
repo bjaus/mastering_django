@@ -1,6 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from mysite.forms import ContactForm
+from django.http import HttpResponseRedirect
 from books.models import Book
+from django.core.mail import send_mail
 
 
 def search(request):
@@ -19,3 +21,19 @@ def search(request):
             return render(request, 'search.html', {'books': books, 'query': q})
         
     return render(request, 'search.html', {'errors': errors})
+    
+    
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            cd = form.cleaned_data
+            send_mail(
+                cd['subject'],
+                cd['message'],
+                cd.get('email', 'noreply@example.com'), ['brandon.jaus@gmail.com'],
+            )
+            return HttpResponseRedirect('/contact/thanks/')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
