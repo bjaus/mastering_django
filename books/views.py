@@ -7,14 +7,15 @@ def search(request):
     errors = []
     
     if 'q' in request.GET:
-        q = request.GET['q']
-    
+        try: q = request.GET['q']
+        except: pass
+
         if not q:
-            errors.append('Please enter a serch term.')
+            errors.append('Pleae enter a search term.')
         elif len(q) > 20:
             errors.append('Please enter at most 20 characters.')
         else:
             books = Book.objects.filter(title__icontains=q).order_by('-publication_date')
             return render(request, 'search.html', {'books': books, 'query': q})
-    
-    return render(request, 'search.html', {'error': errors})
+        
+    return render(request, 'search.html', {'errors': errors})
