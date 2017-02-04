@@ -3,14 +3,16 @@ from django.http import HttpResponse
 from books.models import Book
 
 
-def search_form(request):
-    return render(request, 'search_form.html')
-
-    
 def search(request):
-    if 'q' in request.GET and request.GET['q']:
+    error = False
+    q = None
+    
+    if 'q' in request.GET:
         q = request.GET['q']
-        books = Book.objects.filter(title__icontains=q).order_by('-publication_date')
-        return render(request, 'search_result.html', {'books': books, 'query': q})
+    
+    if not q:
+        error = True
     else:
-        return render(request, 'search_form.html', {'error': True})
+        books = Book.objects.filter(title__icontains=q).order_by('-publication_date')
+        return render(request, 'search_form.html', {'books': books, 'query': q})
+    return render(request, 'search_form.html', {'error': error})

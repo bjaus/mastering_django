@@ -18,6 +18,5 @@ from books import views
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^search-form/$', views.search_form),
     url(r'^search/$', views.search),
 ]
