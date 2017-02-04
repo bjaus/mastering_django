@@ -10,9 +10,10 @@ def search(request):
     if 'q' in request.GET:
         q = request.GET['q']
     
-    if not q:
-        error = True
-    else:
-        books = Book.objects.filter(title__icontains=q).order_by('-publication_date')
-        return render(request, 'search_form.html', {'books': books, 'query': q})
-    return render(request, 'search_form.html', {'error': error})
+        if not q:
+            error = True
+        else:
+            books = Book.objects.filter(title__icontains=q).order_by('-publication_date')
+            return render(request, 'search.html', {'books': books, 'query': q})
+    
+    return render(request, 'search.html', {'error': error})
